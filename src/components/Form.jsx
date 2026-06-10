@@ -1,10 +1,27 @@
 import { useState } from "react";
+import { checkSignUpValidation, checkSignInValidation } from "../utils/validateForm";
+import { useRef } from "react";
 
 const LoginForm = () => {
     const [isSignIn, setIsSignIn] = useState(true);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     const toggleForm = () => {
         setIsSignIn(!isSignIn)
+    }
+
+    const name = useRef(null);
+    const email = useRef(null);
+    const password = useRef(null);
+
+    const handleSignUp = () => {
+        const message = checkSignUpValidation(name.current.value, email.current.value, password.current.value)
+        setErrorMessage(message);
+    }
+
+    const handleSignIn = () => {
+        const message = checkSignInValidation(email.current.value, password.current.value)
+        setErrorMessage(message);
     }
 
     return (
@@ -14,9 +31,10 @@ const LoginForm = () => {
                 {isSignIn ? "Sign In" : "Sign Up"}
             </h1>
 
-            <form>
+            <form onSubmit={(e) => e.preventDefault()}>
                 {!isSignIn && (
                     <input
+                        ref={name}
                         type="text"
                         placeholder="Full Name"
                         className="w-full p-3 my-2 rounded bg-gray-700 text-white"
@@ -24,18 +42,25 @@ const LoginForm = () => {
                 )}
 
                 <input
+                    ref={email}
                     type="text"
                     placeholder="Email Address"
                     className="w-full p-3 my-2 rounded bg-gray-700 text-white"
                 />
 
                 <input
+                    ref={password}
                     type="password"
                     placeholder="Password"
                     className="w-full p-3 my-2 rounded bg-gray-700 text-white"
                 />
 
-                <button type="submit" className="w-full p-3 mt-4 bg-red-600 hover:bg-red-700 rounded">
+                <p className="text-red-600 font-bold">{errorMessage}</p>
+
+                <button
+                    type="submit"
+                    className="w-full p-3 mt-4 bg-red-600 hover:bg-red-700 rounded"
+                    onClick={isSignIn ? handleSignIn : handleSignUp}>
                     {isSignIn ? "Sign In" : "Sign Up"}
                 </button>
             </form>
