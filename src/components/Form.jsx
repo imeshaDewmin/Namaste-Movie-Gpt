@@ -3,15 +3,12 @@ import { checkSignUpValidation, checkSignInValidation } from "../utils/validateF
 import { useRef } from "react";
 import { auth } from "../utils/firebaseConfig";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const LoginForm = () => {
 
     const dispatch = useDispatch();
-
-    const navigate = useNavigate();
 
     const [isSignIn, setIsSignIn] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -44,7 +41,6 @@ const LoginForm = () => {
                         email: email
                     })
                     );
-                    navigate("/browse")
                 }).catch((error) => {
                     setErrorMessage(error.message)
                 });
@@ -65,8 +61,6 @@ const LoginForm = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                navigate("/browse")
-
             })
             .catch((error) => {
                 const errorCode = error.code;
