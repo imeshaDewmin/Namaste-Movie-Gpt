@@ -1,6 +1,11 @@
+import Header from "../components/Header";
+
 const BrowsePage = () => {
   return (
-    <div>BrowsePage</div>
+    <div className="">
+      <Header/>
+    </div>
   )
 }
+
 export default BrowsePage;
