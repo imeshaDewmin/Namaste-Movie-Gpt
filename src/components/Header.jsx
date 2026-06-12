@@ -4,7 +4,7 @@ import { auth } from "../utils/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { addUser, removeUser } from "../utils/userSlice";
+import { addUser, removeUser } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -17,7 +17,7 @@ const Header = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 const { uid, displayName, email } = user;
                 dispatch(addUser({ uid: uid, displayName: displayName, email: email }));
@@ -27,6 +27,8 @@ const Header = () => {
                 navigate("/");
             }
         });
+
+        return () => unsubscribe();
 
     }, [])
 

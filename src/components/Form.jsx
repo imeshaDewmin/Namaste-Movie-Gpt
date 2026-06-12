@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { auth } from "../utils/firebaseConfig";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import { addUser } from "../redux/userSlice";
 
 const LoginForm = () => {
 
