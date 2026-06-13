@@ -11,3 +11,5 @@ export const TMDB_API_OPTIONS = {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYzI1MmY4MTgyZGU4NmRiYTJhODFjZDFkMDUyMzEyMyIsIm5iZiI6MTc4MTI1Mjc1Ny42ODQsInN1YiI6IjZhMmJjMjk1MGM3MzQ2ODJjZmRiZDliNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CRCYqjQSqgzYQLIV15Y8VEJjGJvYSLU9QJUsYj8h6oU'
     }
 };
+
+export const TMDB_MOVIE_POSTER_PATH_BASE_URL = "https://image.tmdb.org/t/p/w500";
