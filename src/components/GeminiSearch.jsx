@@ -1,8 +1,8 @@
 import { NETFLIX_BG_IMG_URL } from "../utils/constants"
-import GptMovieSuggestions from "./GptMovieSuggestions"
-import GptSearchBar from "./GptSearchBar"
+import GptMovieSuggestions from "./GeminiMovieSuggestions"
+import GptSearchBar from "./GeminiSearchBar"
 
-const GptSearch = () => {
+const GeminiSearch = () => {
     return (
         <div className="bg-black text-white">
             <img
@@ -15,4 +15,4 @@ const GptSearch = () => {
         </div>
     )
 }
-export default GptSearch
+export default GeminiSearch;

@@ -7,21 +7,23 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
-import { toggleGptSearchView } from "../redux/gptSlice";
+import { toggleGeminiSearchView } from "../redux/geminiSlice";
 import { changeLanguage } from "../redux/configSlice";
 
 const Header = () => {
 
-    const gptSearch = useSelector(store => store.gpt.showGptSearch);
+    const geminiSearch = useSelector(store => store.gemini.showGeminiSearch);
 
     const user = useSelector(store => store.user);
+
+    const selectedLanguage = useSelector(store => store.appConfig.selectLanguage)
 
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
-    const handleGptSearchClick = () => {
-        dispatch(toggleGptSearchView());
+    const handleGeminiSearchClick = () => {
+        dispatch(toggleGeminiSearchView());
     }
 
     useEffect(() => {
@@ -58,9 +60,10 @@ const Header = () => {
 
             {user && (
                 <div className="flex items-center gap-3 mr-6">
-                    {gptSearch && (
-                        <select className="p-2 m-2 text-white bg-gray-800 hover:bg-gray-900 
-                    cursor-pointer"
+                    {geminiSearch && (
+                        <select
+                            className="p-2 m-2 text-white bg-gray-800 hover:bg-gray-900 cursor-pointer"
+                            value={selectedLanguage}
                             onChange={handleLanguageChange}>
                             <option value="en">English</option>
                             <option value="sinhala">Sinhala</option>
@@ -71,7 +74,7 @@ const Header = () => {
                     <button className="py-2 px-4 m-2
                      bg-indigo-500 hover:bg-indigo-600
                       rounded-lg text-white font-bold"
-                        onClick={handleGptSearchClick}>{gptSearch ? "Home" : "🔍︎ GPT Search"}</button>
+                        onClick={handleGeminiSearchClick}>{geminiSearch ? "Home" : "🔍︎ Gemini Search"}</button>
 
                     <img className="w-9 h-9" src={NETFLIX_USER_ICON} alt="userIcon" />
                     <span className="text-white text-sm font-medium">
