@@ -7,14 +7,22 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
+import { toggleGptSearchView } from "../redux/gptSlice";
+import { changeLanguage } from "../redux/configSlice";
 
 const Header = () => {
 
-    const user = useSelector((store) => store.user)
+    const gptSearch = useSelector(store => store.gpt.showGptSearch);
+
+    const user = useSelector(store => store.user);
 
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
+
+    const handleGptSearchClick = () => {
+        dispatch(toggleGptSearchView());
+    }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -39,12 +47,32 @@ const Header = () => {
         });
     }
 
+    const handleLanguageChange = (e) => {
+        dispatch(changeLanguage(e.target.value));
+    }
+
+
     return (
         <div className="absolute z-20 bg-gradient-to-b from-black w-screen flex justify-between">
             <img className="w-44 m-3 p-3 bg-gradient-to-b from-black" src={NETFLIX_LOGO_URL} alt="logo"></img>
 
             {user && (
                 <div className="flex items-center gap-3 mr-6">
+                    {gptSearch && (
+                        <select className="p-2 m-2 text-white bg-gray-800 hover:bg-gray-900 
+                    cursor-pointer"
+                            onChange={handleLanguageChange}>
+                            <option value="en">English</option>
+                            <option value="sinhala">Sinhala</option>
+                            <option value="tamil">Tamil</option>
+                        </select>
+                    )}
+
+                    <button className="py-2 px-4 m-2
+                     bg-indigo-500 hover:bg-indigo-600
+                      rounded-lg text-white font-bold"
+                        onClick={handleGptSearchClick}>{gptSearch ? "Home" : "🔍︎ GPT Search"}</button>
+
                     <img className="w-9 h-9" src={NETFLIX_USER_ICON} alt="userIcon" />
                     <span className="text-white text-sm font-medium">
                         {user.displayName}
