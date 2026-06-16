@@ -63,7 +63,7 @@ const GeminiSearchBar = () => {
     };
 
     return (
-        <div className="pt-32 flex justify-center px-4">
+        <div className="pt-[45%] md:pt-32 flex justify-center px-4">
             <form
                 className=" w-full max-w-3xl bg-black/70 backdrop-blur-md rounded-2xl shadow-2xl p-3
                     grid grid-cols-12 border border-white/10"

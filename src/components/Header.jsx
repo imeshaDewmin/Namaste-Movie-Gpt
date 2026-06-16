@@ -56,8 +56,9 @@ const Header = () => {
 
 
     return (
-        <div className="absolute z-20 bg-gradient-to-b from-black w-screen flex justify-between">
-            <img className="w-44 m-3 p-3 bg-gradient-to-b from-black" src={NETFLIX_LOGO_URL} alt="logo"></img>
+        <div className="absolute z-20 bg-gradient-to-b from-black w-screen flex flex-col md:flex-row justify-between">
+            <img className="w-44 mx-auto md:m-3 p-3 bg-gradient-to-b from-black"
+                src={NETFLIX_LOGO_URL} alt="logo"></img>
 
             {user && (
                 <div className="flex items-center gap-3 mr-6">
@@ -77,7 +78,7 @@ const Header = () => {
                       rounded-lg text-white font-bold"
                         onClick={handleGeminiSearchClick}>{geminiSearch ? "Home" : "🔍︎ Gemini Search"}</button>
 
-                    <img className="w-9 h-9" src={NETFLIX_USER_ICON} alt="userIcon" />
+                    <img className="w-9 h-9 hidden md:inline-block" src={NETFLIX_USER_ICON} alt="userIcon" />
                     <span className="text-white text-sm font-medium">
                         {user.displayName}
                     </span>

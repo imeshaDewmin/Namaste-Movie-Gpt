@@ -11,7 +11,8 @@ const GeminiMovieSuggestions = () => {
 
 
     return (
-        <div className="p-4 m-8 bg-black text-white flex gap-5 opacity-90">
+        <div className="p-3 bg-black/90 text-white rounded-lg space-y-6
+            md:p-5  mx-2 md:mx-8 md:flex md:m-10">
             {movieNames.map((movieName, index) =>
                 <MovieList
                     key={movieName}
