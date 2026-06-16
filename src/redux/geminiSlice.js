@@ -12,13 +12,17 @@ const geminiSlice = createSlice({
             state.showGeminiSearch = !state.showGeminiSearch;
         },
         addTmdbMovies: (state, action) => {
-            const { geminiMovieResults, searchResults } = action.payload
+            const { geminiMovieResults, filteredResults } = action.payload
             state.movieNames = geminiMovieResults;
-            state.tmdbMovies = searchResults;
+            state.tmdbMovies = filteredResults;
+        },
+        clearMovies: (state) => {
+            state.movieNames = null;
+            state.tmdbMovies = null;
         }
     }
 })
 
-export const { toggleGeminiSearchView, addTmdbMovies } = geminiSlice.actions;
+export const { toggleGeminiSearchView, addTmdbMovies, clearMovies } = geminiSlice.actions;
 
 export default geminiSlice.reducer;

@@ -1,5 +1,5 @@
 import { NETFLIX_BG_IMG_URL } from "../utils/constants"
-import GptMovieSuggestions from "./GeminiMovieSuggestions"
+import GeminiMovieSuggestions from "./GeminiMovieSuggestions"
 import GptSearchBar from "./GeminiSearchBar"
 
 const GeminiSearch = () => {
@@ -10,8 +10,11 @@ const GeminiSearch = () => {
                 alt="bg"
                 className="absolute inset-0 w-full h-full object-cover"
             />
-            <GptSearchBar />
-            <GptMovieSuggestions />
+            <div className="relative z-10">
+                <GptSearchBar />
+                <GeminiMovieSuggestions />
+            </div>
+
         </div>
     )
 }

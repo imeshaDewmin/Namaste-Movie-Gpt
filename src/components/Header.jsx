@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { addUser, removeUser } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
-import { toggleGeminiSearchView } from "../redux/geminiSlice";
+import { clearMovies, toggleGeminiSearchView } from "../redux/geminiSlice";
 import { changeLanguage } from "../redux/configSlice";
 
 const Header = () => {
@@ -24,6 +24,7 @@ const Header = () => {
 
     const handleGeminiSearchClick = () => {
         dispatch(toggleGeminiSearchView());
+        dispatch(clearMovies());
     }
 
     useEffect(() => {

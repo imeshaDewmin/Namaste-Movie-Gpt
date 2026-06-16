@@ -17,7 +17,7 @@ const GeminiSearchBar = () => {
         const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movie)}&include_adult=false&language=en-US&page=1`, TMDB_API_OPTIONS);
         const json = await data.json();
 
-        if (!json.results || json.results.length === 0) return null;
+        if (!json.results || json.results.length === 0) return [];
 
         // Try exact match first
         const exactMovie = json.results.find(
@@ -25,13 +25,13 @@ const GeminiSearchBar = () => {
         );
 
         // Fall back to first result if no exact match
-        return exactMovie || json.results[0];
+        return [exactMovie || json.results[0]];
     }
 
     const handleGeminiSearch = async () => {
         try {
             const response = await ai.models.generateContent({
-                model: "gemini-3.5-flash",
+                model: "gemini-2.5-flash",
                 contents: `Act as a movie recommendation system. Suggest 5 movies only. Comma separated like in this example. Ranja, Moda Tharindu, Neera, The wife, Riverstone
         User input: ${searchText.current.value}`,
             });
@@ -51,7 +51,7 @@ const GeminiSearchBar = () => {
             // remove null values
             const filteredResults = searchResults.filter(Boolean);
 
-            dispatch(addTmdbMovies({ geminiMovieResults, searchResults }));
+            dispatch(addTmdbMovies({ geminiMovieResults, filteredResults }));
 
 
         } catch (error) {
