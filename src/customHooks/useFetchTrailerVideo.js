@@ -1,9 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideoKey } from "../redux/movieSlice";
 import { TMDB_API_OPTIONS } from "../utils/constants";
 import { useEffect } from "react";
 
 const useFetchTrailerVideo = (movieId) => {
+
+    const trailerVideo = useSelector(store => store.movies.trailerVideoKey);
 
     const dispatch = useDispatch();
 
@@ -22,7 +24,8 @@ const useFetchTrailerVideo = (movieId) => {
     }
 
     useEffect(() => {
-        fetchMovieVideos();
+        !trailerVideo &&
+            fetchMovieVideos();
     }, [movieId])
 
 }
