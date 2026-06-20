@@ -31,7 +31,7 @@ const GeminiSearchBar = () => {
     const handleGeminiSearch = async () => {
         try {
             const response = await ai.models.generateContent({
-                model: "gemini-2.5-flash",
+                model: "gemini-3.1-flash-lite",
                 contents: `Act as a movie recommendation system. Suggest 5 movies only. Comma separated like in this example. Ranja, Moda Tharindu, Neera, The wife, Riverstone
         User input: ${searchText.current.value}`,
             });
